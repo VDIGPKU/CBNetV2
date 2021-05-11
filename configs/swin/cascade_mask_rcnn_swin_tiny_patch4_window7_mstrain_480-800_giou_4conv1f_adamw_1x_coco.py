@@ -11,7 +11,7 @@ model = dict(
         num_heads=[3, 6, 12, 24],
         window_size=7,
         ape=False,
-        drop_path_rate=0.2,
+        drop_path_rate=0.0,
         patch_norm=True,
         use_checkpoint=False
     ),
