@@ -3,6 +3,7 @@ from .detectors_resnet import DetectoRS_ResNet
 from .detectors_resnext import DetectoRS_ResNeXt
 from .hourglass import HourglassNet
 from .hrnet import HRNet
+from .mobilenet_v2 import MobileNetV2
 from .regnet import RegNet
 from .res2net import Res2Net
 from .resnest import ResNeSt
