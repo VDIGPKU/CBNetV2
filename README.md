@@ -1,12 +1,8 @@
-# Swin Transformer for Object Detection
+# CBNetV2: A Novel Composite Backbone Network Architecture for Object Detection
 
-This repo contains the supported code and configuration files to reproduce object detection results of [Swin Transformer](https://arxiv.org/pdf/2103.14030.pdf). It is based on [mmdetection](https://github.com/open-mmlab/mmdetection).
+This repo contains the supported code and configuration files to reproduce object detection results of [CBNetV2](). It is based on [mmdetection](https://github.com/open-mmlab/mmdetection) and [Swin Transformer for Object Detection](https://github.com/SwinTransformer/Swin-Transformer-Object-Detection).
 
-## Updates
-
-***05/11/2021*** Models for [MoBY](https://github.com/SwinTransformer/Transformer-SSL) are released
-
-***04/12/2021*** Initial commits
+Contact us with tingtingliang@pku.edu.cn, wyt@pku.edu.cn.
 
 ## Results and Models
 
@@ -41,29 +37,8 @@ This repo contains the supported code and configuration files to reproduce objec
 
 **Notes**: 
 
-- **Pre-trained models can be downloaded from [Swin Transformer for ImageNet Classification](https://github.com/microsoft/Swin-Transformer)**.
+- **Pre-trained models of Swin Transformer can be downloaded from [Swin Transformer for ImageNet Classification](https://github.com/microsoft/Swin-Transformer)**.
 - Access code for `baidu` is `swin`.
-
-## Results of MoBY with Swin Transformer
-
-### Mask R-CNN
-
-| Backbone | Pretrain | Lr Schd | box mAP | mask mAP | #params | FLOPs | config | log | model |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |:---: |
-| Swin-T | ImageNet-1K | 1x | 43.6 | 39.6 | 48M | 267G | [config](configs/swin/mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_adamw_1x_coco.py) | [github](https://github.com/SwinTransformer/storage/releases/download/v1.0.3/moby_mask_rcnn_swin_tiny_patch4_window7_1x.log.json)/[baidu](https://pan.baidu.com/s/1P5gCIfLUQ64jbVMOom0H3w) | [github](https://github.com/SwinTransformer/storage/releases/download/v1.0.3/moby_mask_rcnn_swin_tiny_patch4_window7_1x.pth)/[baidu](https://pan.baidu.com/s/1xGRihuIrGVreFKn5eJ6oTg) |
-| Swin-T | ImageNet-1K | 3x | 46.0 | 41.7 | 48M | 267G | [config](configs/swin/mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_adamw_3x_coco.py) | [github](https://github.com/SwinTransformer/storage/releases/download/v1.0.3/moby_mask_rcnn_swin_tiny_patch4_window7_3x.log.json)/[baidu](https://pan.baidu.com/s/17WAhUmhAam1of3hXOu-wtA) | [github](https://github.com/SwinTransformer/storage/releases/download/v1.0.3/moby_mask_rcnn_swin_tiny_patch4_window7_3x.pth)/[baidu](https://pan.baidu.com/s/1MSj8cC1wlQU1QaXCdKrzeA) |
-
-### Cascade Mask R-CNN
-
-| Backbone | Pretrain | Lr Schd | box mAP | mask mAP | #params | FLOPs | config | log | model |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |:---: |
-| Swin-T | ImageNet-1K | 1x | 48.1 | 41.5 | 86M | 745G | [config](configs/swin/cascade_mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_1x_coco.py) | [github](https://github.com/SwinTransformer/storage/releases/download/v1.0.3/moby_cascade_mask_rcnn_swin_tiny_patch4_window7_1x.log.json)/[baidu](https://pan.baidu.com/s/1eOdq1rvi0QoXjc7COgiM7A) | [github](https://github.com/SwinTransformer/storage/releases/download/v1.0.3/moby_cascade_mask_rcnn_swin_tiny_patch4_window7_1x.pth)/[baidu](https://pan.baidu.com/s/1-gbY-LExbf0FgYxWWs8OPg) |
-| Swin-T | ImageNet-1K | 3x | 50.2 | 43.5 | 86M | 745G | [config](configs/swin/cascade_mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py) | [github](https://github.com/SwinTransformer/storage/releases/download/v1.0.3/moby_cascade_mask_rcnn_swin_tiny_patch4_window7_3x.log.json)/[baidu](https://pan.baidu.com/s/1zEFXHYjEiXUCWF1U7HR5Zg) | [github](https://github.com/SwinTransformer/storage/releases/download/v1.0.3/moby_cascade_mask_rcnn_swin_tiny_patch4_window7_3x.pth)/[baidu](https://pan.baidu.com/s/1FMmW0GOpT4MKsKUrkJRgeg) |
-
-**Notes:**
-
-- The drop path rate needs to be tuned for best practice.
-- MoBY pre-trained models can be downloaded from [MoBY with Swin Transformer](https://github.com/SwinTransformer/Transformer-SSL).
 
 ## Usage
 
@@ -74,10 +49,14 @@ Please refer to [get_started.md](https://github.com/open-mmlab/mmdetection/blob/
 ### Inference
 ```
 # single-gpu testing
+python tools/test.py <CONFIG_FILE> <DET_CHECKPOINT_FILE> --eval bbox
+# or (w/ bbox_mask)
 python tools/test.py <CONFIG_FILE> <DET_CHECKPOINT_FILE> --eval bbox segm
 
 # multi-gpu testing
-tools/dist_test.sh <CONFIG_FILE> <DET_CHECKPOINT_FILE> <GPU_NUM> --eval bbox segm
+tools/dist_test.sh <CONFIG_FILE> <DET_CHECKPOINT_FILE> <GPU_NUM> --eval bbox
+# or (w/ bbox_mask)
+tools/dist_test.sh <CONFIG_FILE> <DET_CHECKPOINT_FILE> <GPU_NUM> --eval bboxsegm
 ```
 
 ### Training
@@ -99,13 +78,13 @@ tools/dist_train.sh configs/swin/cascade_mask_rcnn_swin_tiny_patch4_window7_mstr
 
 
 ### Apex (optional):
-We use apex for mixed precision training by default. To install apex, run:
+Following [Swin Transformer for Object Detection](https://github.com/SwinTransformer/Swin-Transformer-Object-Detection), we use apex for mixed precision training by default. To install apex, run:
 ```
 git clone https://github.com/NVIDIA/apex
 cd apex
 pip install -v --disable-pip-version-check --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
 ```
-If you would like to disable apex, modify the type of runner as `EpochBasedRunner` and comment out the following code block in the [configuration files](configs/swin):
+<!-- If you would like to disable apex, modify the type of runner as `EpochBasedRunner` and comment out the following code block in the [configuration files](configs/swin):
 ```
 # do not use mmdet version fp16
 fp16 = None
@@ -117,9 +96,10 @@ optimizer_config = dict(
     bucket_size_mb=-1,
     use_fp16=True,
 )
-```
+``` -->
 
-## Citing Swin Transformer
+## Citation
+If you use our code/model, please consider to cite our paper [CBNetV2: A Novel Composite Backbone Network Architecture for Object Detection]().
 ```
 @article{liu2021Swin,
   title={Swin Transformer: Hierarchical Vision Transformer using Shifted Windows},
@@ -129,10 +109,11 @@ optimizer_config = dict(
 }
 ```
 
+## License
+The project is only free for academic research purposes, but needs authorization for commerce. For commerce permission, please contact wyt@pku.edu.cn.
+
+
 ## Other Links
+> **Original CBNet**: See [CBNet: A Novel Composite Backbone Network Architecture for Object Detection](https://github.com/VDIGPKU/CBNet).
 
-> **Image Classification**: See [Swin Transformer for Image Classification](https://github.com/microsoft/Swin-Transformer).
-
-> **Semantic Segmentation**: See [Swin Transformer for Semantic Segmentation](https://github.com/SwinTransformer/Swin-Transformer-Semantic-Segmentation).
-
-> **Self-Supervised Learning**: See [MoBY with Swin Transformer](https://github.com/SwinTransformer/Transformer-SSL).
+> **SWA**: See [SWA Object Detection](https://github.com/hyz-xmaster/swa_object_detection)
