@@ -1,14 +1,10 @@
-_base_ = '../res2net/cascade_mask_rcnn_r2_101_fpn_20e_coco.py'
+_base_ = [
+    '../swin/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py'
+]
 
 model = dict(
     backbone=dict(
-        type='CBRes2Net', 
-        cb_del_stages=1,
-        cb_zero_init=True,
-        cb_steps=2, 
-        cb_inplanes=[64, 256, 512, 1024, 2048], 
-        dcn=dict(type='DCNv2', deform_groups=1, fallback_on_stride=False),
-        stage_with_dcn=(False, True, True, True)
+        type='CBSwinTransformer',
     ),
     neck=dict(
         type='CBFPN',
@@ -27,13 +23,17 @@ img_norm_cfg = dict(
 # augmentation strategy originates from HTC
 train_pipeline = [
     dict(type='LoadImageFromFile'),
-    dict(type='LoadAnnotations', with_bbox=True),
-    dict(type='Resize',  img_scale=[(1600, 400), (1600, 1400)], multiscale_mode='range', keep_ratio=True),
+    dict(type='LoadAnnotations', with_bbox=True, with_mask=True),
     dict(type='RandomFlip', flip_ratio=0.5),
+    dict(
+        type='Resize',
+        img_scale=[(1600, 400), (1600, 1400)],
+        multiscale_mode='range',
+        keep_ratio=True),
     dict(type='Normalize', **img_norm_cfg),
     dict(type='Pad', size_divisor=32),
     dict(type='DefaultFormatBundle'),
-    dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels']),
+    dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels', 'gt_masks']),
 ]
 test_pipeline = [
     dict(type='LoadImageFromFile'),
@@ -50,19 +50,9 @@ test_pipeline = [
             dict(type='Collect', keys=['img']),
         ])
 ]
-
-data = dict(train=dict(pipeline=train_pipeline),
+samples_per_gpu=1
+data = dict(samples_per_gpu=samples_per_gpu,
+            train=dict(pipeline=train_pipeline),
             val=dict(pipeline=test_pipeline),
             test=dict(pipeline=test_pipeline))
-
-# do not use mmdet version fp16
-runner = dict(type='EpochBasedRunnerAmp', max_epochs=20)
-fp16 = None
-optimizer_config = dict(
-    type="DistOptimizerHook",
-    update_interval=1,
-    grad_clip=None,
-    coalesce=True,
-    bucket_size_mb=-1,
-    use_fp16=True,
-)
+optimizer = dict(lr=0.0001*(samples_per_gpu/2))

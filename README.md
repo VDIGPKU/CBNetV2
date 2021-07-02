@@ -8,28 +8,32 @@ Contact us with tingtingliang@pku.edu.cn, wyt@pku.edu.cn.
 
 ### Mask R-CNN
 
-| Backbone | Pretrain | Lr Schd | box mAP | mask mAP | #params | FLOPs | config | model |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| DB-Swin-T | ImageNet-1K | 3x | 50.2 | 44.5 | 76M | 357G | [config](configs/swin/mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_adamw_1x_coco.py) | [github](https://github.com/SwinTransformer/storage/releases/download/v1.0.3/mask_rcnn_swin_tiny_patch4_window7_1x.log.json)/[baidu](https://pan.baidu.com/s/1bYZk7BIeFEozjRNUesxVWg) | 
+| Backbone | Pretrain | Lr Schd | box mAP | mask mAP | #params | FLOPs | config | log | model |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | 
+| DB-Swin-T | ImageNet-1K | 3x | 50.2 | 44.5 | 76M | 357G | [config](configs/cbnet/mask_rcnn_cbv2_swin_small_patch4_window7_mstrain_480-800_adamw_3x_coco.py) | [google](https://drive.google.com/file/d/10SVLpbwFxv7yEnjq9ufyk9-x3V29A8jX/view?usp=sharing)  | [google](https://drive.google.com/file/d/1iHZr0_Fpyx__kq0zQPAHQ0eNvhDRQgm4/view?usp=sharing) |
 
 
 ### Cascade Mask R-CNN
-| Backbone | Pretrain | Lr Schd | box mAP | mask mAP | #params | FLOPs | config | model |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| DB-Swin-T | ImageNet-1K | 3x | 53.6 | 46.2 | 114M | 836G | [config](configs/swin/mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_adamw_1x_coco.py) | [github](https://github.com/SwinTransformer/storage/releases/download/v1.0.3/mask_rcnn_swin_tiny_patch4_window7_1x.log.json)/[baidu](https://pan.baidu.com/s/1bYZk7BIeFEozjRNUesxVWg) | 
+| Backbone | Pretrain | Lr Schd | box mAP | mask mAP | #params | FLOPs | config | log | model |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| DB-Swin-T | ImageNet-1K | 3x | 53.6 | 46.2 | 114M | 836G | [config](configs/cbnet/cascade_mask_rcnn_cbv2_swin_tiny_patch4_window7_mstrain_480-800_adamw_3x_coco.py) | [google](https://drive.google.com/file/d/19y2zwi1QQzQ0jgNdULxHQ7XQNlQfMc2m/view?usp=sharing) | [google](https://drive.google.com/file/d/1wlOPQIn4eY83Y4vX38H9OR-BL7RtGcVG/view?usp=sharing) | 
+
+### Cascade R-CNN (1600x1400)
+| Backbone | Pretrain | Lr Schd | box mAP |  #params | FLOPs | config | model |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | 
+| DB-Res2Net | ImageNet-1K | 20e |  53.7 | 149M | 589G | [config](configs/cbnet/cascade_rcnn_cbv2d1_r2_101_mdconv_fpn_20e_fp16_ms400-1400_coco.py) | [google](https://drive.google.com/file/d/1111aLr6w2pJdqrljOfM600L-cFVSiFf5/view?usp=sharing)| 
+| DB-Res2Net | ImageNet-1K | 20e + 1x (swa) | 54.8 | 149M | 589G | [config](configs/cbnet/cascade_rcnn_cbv2d1_r2_101_mdconv_fpn_20e_fp16_ms400-1400_coco.py)  | [google](https://drive.google.com/file/d/1O5DOHwdDLjR6CVpEP0lIcKHHAT_vUQrE/view?usp=sharing) | 
 
 ### Cascade Mask R-CNN (1600x1400)
 | Backbone | Pretrain | Lr Schd | box mAP | mask mAP | #params | FLOPs | config | model |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| DB-Res2Net | ImageNet-1K | 20e | 56.3 | 48.6 | 114M | 836G | [config](configs/swin/mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_adamw_1x_coco.py) | [github](https://github.com/SwinTransformer/storage/releases/download/v1.0.3/mask_rcnn_swin_tiny_patch4_window7_1x.log.json)/[baidu](https://pan.baidu.com/s/1bYZk7BIeFEozjRNUesxVWg) | 
-| DB-Res2Net | ImageNet-1K | 20e + 1x (swa) | 56.3 | 48.6 | 114M | 836G | [config](configs/swin/mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_adamw_1x_coco.py) | [github](https://github.com/SwinTransformer/storage/releases/download/v1.0.3/mask_rcnn_swin_tiny_patch4_window7_1x.log.json)/[baidu](https://pan.baidu.com/s/1bYZk7BIeFEozjRNUesxVWg) | 
-| DB-Swin-S | ImageNet-1K | 3x | 56.3 | 48.6 | 114M | 836G | [config](configs/swin/mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_adamw_1x_coco.py) | [github](https://github.com/SwinTransformer/storage/releases/download/v1.0.3/mask_rcnn_swin_tiny_patch4_window7_1x.log.json)/[baidu](https://pan.baidu.com/s/1bYZk7BIeFEozjRNUesxVWg) | 
+| DB-Swin-S | ImageNet-1K | 3x | 56.3 | 48.6 | 156M | 1016G | [config](configs/cbnet/cascade_mask_rcnn_cbv2_swin_small_patch4_window7_mstrain_400-1400_adamw_3x_coco.py) | [google](https://drive.google.com/file/d/11hDVHFnGx3zytsd-jNeyD5-EPxcU4Nar/view?usp=sharing)| 
 
 ### HTC (1600x1400)
 | Backbone | Pretrain | Lr Schd | box mAP | mask mAP | #params | FLOPs | config | model |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| DB-Swin-B | ImageNet-22K | 20e | 57.9 | 50.2 | 114M | 836G | [config](configs/swin/mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_adamw_1x_coco.py) | [github](https://github.com/SwinTransformer/storage/releases/download/v1.0.3/mask_rcnn_swin_tiny_patch4_window7_1x.log.json)/[baidu](https://pan.baidu.com/s/1bYZk7BIeFEozjRNUesxVWg) | 
-| DB-Swin-B | ImageNet-22K | 20e + 1x (swa) | 58.2 | 51.1 | 114M | 836G | - | [github](https://github.com/SwinTransformer/storage/releases/download/v1.0.3/mask_rcnn_swin_tiny_patch4_window7_1x.log.json)/[baidu](https://pan.baidu.com/s/1bYZk7BIeFEozjRNUesxVWg) | 
+| DB-Swin-B | ImageNet-22K | 20e | 57.9 | 50.2 | 231M | 1004G | [config](configs/cbnet/htc_cbv2_swin_base_patch4_window7_mstrain_400-1400_adamw_20e_coco.py) | [google](https://drive.google.com/file/d/1GtnBkAbLmoN8sIU_FxMqO_T0K8gfKLmv/view?usp=sharing) |
+| DB-Swin-B | ImageNet-22K | 20e + 1x (swa) | 58.2 | 50.4 | 231M | 1004G | [config](configs/cbnet/htc_cbv2_swin_base_patch4_window7_mstrain_400-1400_adamw_20e_coco.py) | [google](https://drive.google.com/file/d/14FWRFBJCjyrrX7czj3n7zJNfrsazw54Z/view?usp=sharing)| 
 
 
 **Notes**: 
@@ -45,33 +49,31 @@ Please refer to [get_started.md](https://github.com/open-mmlab/mmdetection/blob/
 
 ### Inference
 ```
-# single-gpu testing
-python tools/test.py <CONFIG_FILE> <DET_CHECKPOINT_FILE> --eval bbox
-# or (w/ bbox_mask)
-python tools/test.py <CONFIG_FILE> <DET_CHECKPOINT_FILE> --eval bbox segm
+# single-gpu testing (w/o segm result)
+python tools/test.py <CONFIG_FILE> <DET_CHECKPOINT_FILE> --eval bbox 
 
-# multi-gpu testing
-tools/dist_test.sh <CONFIG_FILE> <DET_CHECKPOINT_FILE> <GPU_NUM> --eval bbox
-# or (w/ bbox_mask)
-tools/dist_test.sh <CONFIG_FILE> <DET_CHECKPOINT_FILE> <GPU_NUM> --eval bboxsegm
+# multi-gpu testing (w/ segm result)
+tools/dist_test.sh <CONFIG_FILE> <DET_CHECKPOINT_FILE> <GPU_NUM> --eval bbox segm
 ```
 
 ### Training
 
 To train a detector with pre-trained models, run:
 ```
-# single-gpu training
-python tools/train.py <CONFIG_FILE> --cfg-options model.pretrained=<PRETRAIN_MODEL> [model.backbone.use_checkpoint=True] [other optional arguments]
-
 # multi-gpu training
-tools/dist_train.sh <CONFIG_FILE> <GPU_NUM> --cfg-options model.pretrained=<PRETRAIN_MODEL> [model.backbone.use_checkpoint=True] [other optional arguments] 
+tools/dist_train.sh <CONFIG_FILE> <GPU_NUM> 
 ```
-For example, to train a Cascade Mask R-CNN model with a `Swin-T` backbone and 8 gpus, run:
+For example, to train a Cascade R-CNN model with a `Duel-Res2Net101-DCN` backbone and 8 gpus, run:
 ```
-tools/dist_train.sh configs/swin/cascade_mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py 8 --cfg-options model.pretrained=<PRETRAIN_MODEL> 
+# path of pre-training model (res2net) is already in config
+tools/dist_train.sh configs/cbnet/cascade_rcnn_cbv2d1_r2_101_mdconv_fpn_20e_fp16_ms400-1400_coco.py 8 
 ```
 
-**Note:** `use_checkpoint` is used to save GPU memory. Please refer to [this page](https://pytorch.org/docs/stable/checkpoint.html) for more details.
+Another  example, to train a Cascade Mask R-CNN model with a `Duel-Swin-T` backbone and 8 gpus, run:
+```
+tools/dist_train.sh configs/cbnet/mask_rcnn_cbv2_swin_small_patch4_window7_mstrain_480-800_adamw_3x_coco.py 8 --cfg-options model.pretrained=<PRETRAIN_MODEL> 
+```
+
 
 
 ### Apex (optional):
@@ -96,7 +98,7 @@ optimizer_config = dict(
 ``` -->
 
 ## Citation
-If you use our code/model, please consider to cite our paper [CBNetV2: A Novel Composite Backbone Network Architecture for Object Detection]().
+If you use our code/model, please consider to cite our paper [CBNetV2: A Novel Composite Backbone Network Architecture for Object Detection](http://arxiv.org/abs/2107.00420).
 ```
 @article{liu2021Swin,
   title={Swin Transformer: Hierarchical Vision Transformer using Shifted Windows},
