@@ -1,10 +1,16 @@
 # CBNetV2: A Novel Composite Backbone Network Architecture for Object Detection
-
+#
 This repo contains the supported code and configuration files to reproduce object detection results of [CBNetV2](http://arxiv.org/abs/2107.00420). It is based on [mmdetection](https://github.com/open-mmlab/mmdetection) and [Swin Transformer for Object Detection](https://github.com/SwinTransformer/Swin-Transformer-Object-Detection).
 
 Contact us with tingtingliang@pku.edu.cn, wyt@pku.edu.cn.
 
 ## Results and Models
+
+### Faster R-CNN 
+| Backbone | Pretrain | Lr Schd | box mAP |  #params | FLOPs | config | log | model |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | 
+| DB-ResNet50 | ImageNet-1K | 1x |  40.4 | 149M | 589G | [config](configs/cbnet/faster_rcnn_cbv2_r50_fpn_1x_coco.py) | [google](https://drive.google.com/file/d/1T7U6sYshcspKvEBMvCK_EDO0-xh554em/view?usp=sharing)| [google](https://drive.google.com/file/d/1111aLr6w2pJdqrljOfM600L-cFVSiFf5/view?usp=sharing)| 
+
 
 ### Mask R-CNN
 
