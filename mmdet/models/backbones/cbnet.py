@@ -9,10 +9,11 @@ from .resnet import ResNet, build_norm_layer, _BatchNorm
 from .res2net import Res2Net
 from .swin_transformer import SwinTransformer
 
+from mmcv.runner import BaseModule
 '''
 For CNN
 '''
-class _CBSubnet(nn.Module):
+class _CBSubnet(BaseModule):
     def _freeze_stages(self):
         if self.frozen_stages >= 0:
             if self.deep_stem and hasattr(self, 'stem'):
@@ -88,7 +89,7 @@ class _Res2Net(_CBSubnet, Res2Net):
         _CBSubnet.__init__(self)
         Res2Net.__init__(self, **kwargs)
 
-class _CBNet(nn.Module):
+class _CBNet(BaseModule):
     def _freeze_stages(self):
         for m in self.cb_modules:
             m._freeze_stages()
@@ -96,10 +97,10 @@ class _CBNet(nn.Module):
     def init_cb_weights(self):
         raise NotImplementedError
 
-    def init_weights(self, pretrained=None):
+    def init_weights(self):
         self.init_cb_weights()
         for m in self.cb_modules:
-            m.init_weights(pretrained=pretrained)
+            m.init_weights()
 
     def _get_cb_feats(self, feats, spatial_info):
         raise NotImplementedError
@@ -131,13 +132,13 @@ class _CBNet(nn.Module):
                 m.eval()
 
 class _CBResNet(_CBNet):
-    def __init__(self, cb_steps, cb_inplanes, net, cb_zero_init=True, cb_del_stages=0, **kwargs):
+    def __init__(self, net, cb_inplanes, num_backbones=2, cb_zero_init=True, cb_del_stages=0, **kwargs):
         super(_CBResNet, self).__init__()
         self.cb_zero_init = cb_zero_init
         self.cb_del_stages = cb_del_stages
 
         self.cb_modules = nn.ModuleList()
-        for cb_idx in range(cb_steps):
+        for cb_idx in range(num_backbones):
             cb_module = net(**kwargs)
             if cb_idx > 0:
                 cb_module.del_layers(self.cb_del_stages)
@@ -145,7 +146,7 @@ class _CBResNet(_CBNet):
         self.out_indices = self.cb_modules[0].out_indices
 
         self.cb_linears = nn.ModuleList()
-        if cb_steps > 1:
+        if num_backbones > 1:
             self.num_layers = len(self.cb_modules[0].stage_blocks)
             norm_cfg = self.cb_modules[0].norm_cfg
             for i in range(self.num_layers):
@@ -283,7 +284,7 @@ class _SwinTransformer(SwinTransformer):
 
 
 @BACKBONES.register_module()
-class CBSwinTransformer(nn.Module):
+class CBSwinTransformer(BaseModule):
     """ CB Swin Transformer backbone.
         A PyTorch impl of : `Swin Transformer: Hierarchical Vision Transformer using Shifted Windows`  -
           https://arxiv.org/pdf/2103.14030
@@ -312,12 +313,12 @@ class CBSwinTransformer(nn.Module):
         use_checkpoint (bool): Whether to use checkpointing to save memory. Default: False.
     """
 
-    def __init__(self, cb_steps, embed_dim=96, cb_zero_init=True, cb_del_stages=1, **kwargs):
+    def __init__(self, num_backbones=2, embed_dim=96, cb_zero_init=True, cb_del_stages=1, **kwargs):
         super(CBSwinTransformer, self).__init__()
         self.cb_zero_init = cb_zero_init
         self.cb_del_stages = cb_del_stages
         self.cb_modules = nn.ModuleList()
-        for cb_idx in range(cb_steps):
+        for cb_idx in range(num_backbones):
             cb_module = _SwinTransformer(embed_dim=embed_dim, **kwargs)
             if cb_idx > 0:
                 cb_module.del_layers(cb_del_stages)
@@ -328,14 +329,12 @@ class CBSwinTransformer(nn.Module):
         cb_inplanes = [embed_dim * 2 ** i for i in range(self.num_layers)]
 
         self.cb_linears = nn.ModuleList()
-        if cb_steps > 1:
+        if num_backbones > 1:
             for i in range(self.num_layers):
                 linears = nn.ModuleList()
                 if i >= self.cb_del_stages-1:
                     jrange = 4 - i
                     for j in range(jrange):
-                        # linears.append(
-                        #     nn.Conv2d(cb_inplanes[i + j], cb_inplanes[i], 1))
                         if cb_inplanes[i + j] != cb_inplanes[i]:
                             layer = nn.Conv2d(cb_inplanes[i + j], cb_inplanes[i], 1)
                         else:
@@ -347,7 +346,7 @@ class CBSwinTransformer(nn.Module):
         for m in self.cb_modules:
             m._freeze_stages()
 
-    def init_weights(self, pretrained=None):
+    def init_weights(self):
         """Initialize the weights in backbone.
 
         Args:
@@ -364,7 +363,7 @@ class CBSwinTransformer(nn.Module):
                         constant_init(m, 0)
                         
         for m in self.cb_modules:
-            m.init_weights(pretrained=pretrained)
+            m.init_weights()
 
     def spatial_interpolate(self, x, H, W):
         B, C = x.shape[:2]

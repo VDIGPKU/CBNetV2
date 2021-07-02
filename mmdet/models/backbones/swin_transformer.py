@@ -16,6 +16,7 @@ from mmcv_custom import load_checkpoint
 from mmdet.utils import get_root_logger
 from ..builder import BACKBONES
 
+from mmcv.runner import BaseModule
 
 class Mlp(nn.Module):
     """ Multilayer perceptron."""
@@ -446,7 +447,7 @@ class PatchEmbed(nn.Module):
 
 
 @BACKBONES.register_module()
-class SwinTransformer(nn.Module):
+class SwinTransformer(BaseModule):
     """ Swin Transformer backbone.
         A PyTorch impl of : `Swin Transformer: Hierarchical Vision Transformer using Shifted Windows`  -
           https://arxiv.org/pdf/2103.14030
@@ -473,6 +474,9 @@ class SwinTransformer(nn.Module):
         frozen_stages (int): Stages to be frozen (stop grad and set eval mode).
             -1 means not freezing any parameters.
         use_checkpoint (bool): Whether to use checkpointing to save memory. Default: False.
+        pretrained (str, optional): model pretrained path. Default: None.
+        init_cfg (dict or list[dict], optional): Initialization config dict.
+            Default: None.
     """
 
     def __init__(self,
@@ -494,8 +498,12 @@ class SwinTransformer(nn.Module):
                  patch_norm=True,
                  out_indices=(0, 1, 2, 3),
                  frozen_stages=-1,
-                 use_checkpoint=False):
-        super().__init__()
+                 use_checkpoint=False,
+                 pretrained=None,
+                 init_cfg=None):
+        assert init_cfg is None, 'To prevent abnormal initialization ' \
+                                 'behavior, init_cfg is not allowed to be set'
+        super().__init__(init_cfg=init_cfg)
 
         self.pretrain_img_size = pretrain_img_size
         self.num_layers = len(depths)
@@ -504,6 +512,7 @@ class SwinTransformer(nn.Module):
         self.patch_norm = patch_norm
         self.out_indices = out_indices
         self.frozen_stages = frozen_stages
+        self.pretrained = pretrained
 
         # split image into non-overlapping patches
         self.patch_embed = PatchEmbed(
@@ -571,13 +580,34 @@ class SwinTransformer(nn.Module):
                 for param in m.parameters():
                     param.requires_grad = False
 
-    def init_weights(self, pretrained=None):
-        """Initialize the weights in backbone.
+    # def init_weights(self, pretrained=None):
+    #     """Initialize the weights in backbone.
 
-        Args:
-            pretrained (str, optional): Path to pre-trained weights.
-                Defaults to None.
-        """
+    #     Args:
+    #         pretrained (str, optional): Path to pre-trained weights.
+    #             Defaults to None.
+    #     """
+
+    #     def _init_weights(m):
+    #         if isinstance(m, nn.Linear):
+    #             trunc_normal_(m.weight, std=.02)
+    #             if isinstance(m, nn.Linear) and m.bias is not None:
+    #                 nn.init.constant_(m.bias, 0)
+    #         elif isinstance(m, nn.LayerNorm):
+    #             nn.init.constant_(m.bias, 0)
+    #             nn.init.constant_(m.weight, 1.0)
+
+    #     if isinstance(pretrained, str):
+    #         self.apply(_init_weights)
+    #         logger = get_root_logger()
+    #         load_checkpoint(self, pretrained, strict=False, logger=logger)
+    #     elif pretrained is None:
+    #         self.apply(_init_weights)
+    #     else:
+    #         raise TypeError('pretrained must be a str or None')
+
+    def init_weights(self):
+        """Initialize the weights in backbone."""
 
         def _init_weights(m):
             if isinstance(m, nn.Linear):
@@ -588,11 +618,11 @@ class SwinTransformer(nn.Module):
                 nn.init.constant_(m.bias, 0)
                 nn.init.constant_(m.weight, 1.0)
 
-        if isinstance(pretrained, str):
+        if isinstance(self.pretrained, str):
             self.apply(_init_weights)
             logger = get_root_logger()
-            load_checkpoint(self, pretrained, strict=False, logger=logger)
-        elif pretrained is None:
+            load_checkpoint(self, self.pretrained, strict=False, logger=logger)
+        elif self.pretrained is None:
             self.apply(_init_weights)
         else:
             raise TypeError('pretrained must be a str or None')

@@ -5,8 +5,6 @@ _base_ = [
 model = dict(
     backbone=dict(
         type='CBSwinTransformer',
-        cb_steps=2,
-        cb_zero_init=True,
         embed_dim=128,
         depths=[2, 2, 18, 2],
         num_heads=[4, 8, 16, 32],
@@ -17,7 +15,7 @@ model = dict(
         use_checkpoint=False
     ),
     neck=dict(
-        type='MultiFPN',
+        type='CBFPN',
         in_channels=[128, 256, 512, 1024]
     ),
     test_cfg = dict(
@@ -33,7 +31,7 @@ data_root = 'data/coco/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 
-# augmentation strategy originates from DETR / Sparse RCNN
+# augmentation strategy originates from HTC
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(
