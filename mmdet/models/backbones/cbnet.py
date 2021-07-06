@@ -132,13 +132,13 @@ class _CBNet(BaseModule):
                 m.eval()
 
 class _CBResNet(_CBNet):
-    def __init__(self, net, cb_inplanes, num_backbones=2, cb_zero_init=True, cb_del_stages=0, **kwargs):
+    def __init__(self, net, cb_inplanes, cb_zero_init=True, cb_del_stages=0, **kwargs):
         super(_CBResNet, self).__init__()
         self.cb_zero_init = cb_zero_init
         self.cb_del_stages = cb_del_stages
 
         self.cb_modules = nn.ModuleList()
-        for cb_idx in range(num_backbones):
+        for cb_idx in range(2):
             cb_module = net(**kwargs)
             if cb_idx > 0:
                 cb_module.del_layers(self.cb_del_stages)
@@ -146,22 +146,21 @@ class _CBResNet(_CBNet):
         self.out_indices = self.cb_modules[0].out_indices
 
         self.cb_linears = nn.ModuleList()
-        if num_backbones > 1:
-            self.num_layers = len(self.cb_modules[0].stage_blocks)
-            norm_cfg = self.cb_modules[0].norm_cfg
-            for i in range(self.num_layers):
-                linears = nn.ModuleList()
-                if i >= self.cb_del_stages:
-                    jrange = 4 - i
-                    for j in range(jrange):
-                        linears.append(
-                            nn.Sequential(
-                                nn.Conv2d(cb_inplanes[i + j + 1], cb_inplanes[i], 1, bias=False),
-                                build_norm_layer(norm_cfg, cb_inplanes[i])[1]
-                            )
+        self.num_layers = len(self.cb_modules[0].stage_blocks)
+        norm_cfg = self.cb_modules[0].norm_cfg
+        for i in range(self.num_layers):
+            linears = nn.ModuleList()
+            if i >= self.cb_del_stages:
+                jrange = 4 - i
+                for j in range(jrange):
+                    linears.append(
+                        nn.Sequential(
+                            nn.Conv2d(cb_inplanes[i + j + 1], cb_inplanes[i], 1, bias=False),
+                            build_norm_layer(norm_cfg, cb_inplanes[i])[1]
                         )
-                    
-                self.cb_linears.append(linears)
+                    )
+                
+            self.cb_linears.append(linears)
     
     def init_cb_weights(self):
         if self.cb_zero_init:
@@ -285,40 +284,12 @@ class _SwinTransformer(SwinTransformer):
 
 @BACKBONES.register_module()
 class CBSwinTransformer(BaseModule):
-    """ CB Swin Transformer backbone.
-        A PyTorch impl of : `Swin Transformer: Hierarchical Vision Transformer using Shifted Windows`  -
-          https://arxiv.org/pdf/2103.14030
-
-    Args:
-        pretrain_img_size (int): Input image size for training the pretrained model,
-            used in absolute postion embedding. Default 224.
-        patch_size (int | tuple(int)): Patch size. Default: 4.
-        in_chans (int): Number of input image channels. Default: 3.
-        embed_dim (int): Number of linear projection output channels. Default: 96.
-        depths (tuple[int]): Depths of each Swin Transformer stage.
-        num_heads (tuple[int]): Number of attention head of each stage.
-        window_size (int): Window size. Default: 7.
-        mlp_ratio (float): Ratio of mlp hidden dim to embedding dim. Default: 4.
-        qkv_bias (bool): If True, add a learnable bias to query, key, value. Default: True
-        qk_scale (float): Override default qk scale of head_dim ** -0.5 if set.
-        drop_rate (float): Dropout rate.
-        attn_drop_rate (float): Attention dropout rate. Default: 0.
-        drop_path_rate (float): Stochastic depth rate. Default: 0.2.
-        norm_layer (nn.Module): Normalization layer. Default: nn.LayerNorm.
-        ape (bool): If True, add absolute position embedding to the patch embedding. Default: False.
-        patch_norm (bool): If True, add normalization after patch embedding. Default: True.
-        out_indices (Sequence[int]): Output from which stages.
-        frozen_stages (int): Stages to be frozen (stop grad and set eval mode).
-            -1 means not freezing any parameters.
-        use_checkpoint (bool): Whether to use checkpointing to save memory. Default: False.
-    """
-
-    def __init__(self, num_backbones=2, embed_dim=96, cb_zero_init=True, cb_del_stages=1, **kwargs):
+    def __init__(self, embed_dim=96, cb_zero_init=True, cb_del_stages=1, **kwargs):
         super(CBSwinTransformer, self).__init__()
         self.cb_zero_init = cb_zero_init
         self.cb_del_stages = cb_del_stages
         self.cb_modules = nn.ModuleList()
-        for cb_idx in range(num_backbones):
+        for cb_idx in range(2):
             cb_module = _SwinTransformer(embed_dim=embed_dim, **kwargs)
             if cb_idx > 0:
                 cb_module.del_layers(cb_del_stages)
@@ -329,18 +300,17 @@ class CBSwinTransformer(BaseModule):
         cb_inplanes = [embed_dim * 2 ** i for i in range(self.num_layers)]
 
         self.cb_linears = nn.ModuleList()
-        if num_backbones > 1:
-            for i in range(self.num_layers):
-                linears = nn.ModuleList()
-                if i >= self.cb_del_stages-1:
-                    jrange = 4 - i
-                    for j in range(jrange):
-                        if cb_inplanes[i + j] != cb_inplanes[i]:
-                            layer = nn.Conv2d(cb_inplanes[i + j], cb_inplanes[i], 1)
-                        else:
-                            layer = nn.Identity()
-                        linears.append(layer)
-                self.cb_linears.append(linears)
+        for i in range(self.num_layers):
+            linears = nn.ModuleList()
+            if i >= self.cb_del_stages-1:
+                jrange = 4 - i
+                for j in range(jrange):
+                    if cb_inplanes[i + j] != cb_inplanes[i]:
+                        layer = nn.Conv2d(cb_inplanes[i + j], cb_inplanes[i], 1)
+                    else:
+                        layer = nn.Identity()
+                    linears.append(layer)
+            self.cb_linears.append(linears)
 
     def _freeze_stages(self):
         for m in self.cb_modules:
@@ -357,10 +327,7 @@ class CBSwinTransformer(BaseModule):
         if self.cb_zero_init:
             for ls in self.cb_linears:
                 for m in ls:
-                    if isinstance(m, nn.Sequential):
-                        constant_init(m[-1], 0)
-                    else:
-                        constant_init(m, 0)
+                    constant_init(m, 0)
                         
         for m in self.cb_modules:
             m.init_weights()
