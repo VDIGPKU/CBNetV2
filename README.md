@@ -9,7 +9,7 @@ Contact us with tingtingliang@pku.edu.cn, wyt@pku.edu.cn.
 ### Faster R-CNN 
 | Backbone | Pretrain | Lr Schd | box mAP |  #params | FLOPs | config | log | model |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | 
-| DB-ResNet50 | ImageNet-1K | 1x |  40.4 | 149M | 589G | [config](configs/cbnet/faster_rcnn_cbv2_r50_fpn_1x_coco.py) | [google](https://drive.google.com/file/d/1T7U6sYshcspKvEBMvCK_EDO0-xh554em/view?usp=sharing)| [google](https://drive.google.com/file/d/1111aLr6w2pJdqrljOfM600L-cFVSiFf5/view?usp=sharing)| 
+| DB-ResNet50 | ImageNet-1K | 1x |  40.8 | 69M | 284G | [config](configs/cbnet/faster_rcnn_cbv2d1_r50_fpn_1x_coco.py) | [google](https://drive.google.com/file/d/1l_rpp26TX1ix8wUrjRrxkQX20GMG_t1u/view?usp=sharing)| [google](https://drive.google.com/file/d/1vQrMj4aehNMlSjqV_z5r3rbVNRzDpcco/view?usp=sharing)| 
 
 
 ### Mask R-CNN
@@ -27,8 +27,8 @@ Contact us with tingtingliang@pku.edu.cn, wyt@pku.edu.cn.
 ### Cascade R-CNN (1600x1400)
 | Backbone | Pretrain | Lr Schd | box mAP |  #params | FLOPs | config | model |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | 
-| DB-Res2Net | ImageNet-1K | 20e |  53.7 | 149M | 589G | [config](configs/cbnet/cascade_rcnn_cbv2d1_r2_101_mdconv_fpn_20e_fp16_ms400-1400_coco.py) | [google](https://drive.google.com/file/d/1111aLr6w2pJdqrljOfM600L-cFVSiFf5/view?usp=sharing)| 
-| DB-Res2Net | ImageNet-1K | 20e + 1x (swa) | 54.8 | 149M | 589G | [config](configs/cbnet/cascade_rcnn_cbv2d1_r2_101_mdconv_fpn_20e_fp16_ms400-1400_coco.py)  | [google](https://drive.google.com/file/d/1O5DOHwdDLjR6CVpEP0lIcKHHAT_vUQrE/view?usp=sharing) | 
+| DB-Res2Net101-DCN | ImageNet-1K | 20e |  53.7 | 149M | 589G | [config](configs/cbnet/cascade_rcnn_cbv2d1_r2_101_mdconv_fpn_20e_fp16_ms400-1400_coco.py) | [google](https://drive.google.com/file/d/1111aLr6w2pJdqrljOfM600L-cFVSiFf5/view?usp=sharing)| 
+| DB-Res2Net101-DCN | ImageNet-1K | 20e + 1x (swa) | 54.8 | 149M | 589G | [config](configs/cbnet/cascade_rcnn_cbv2d1_r2_101_mdconv_fpn_20e_fp16_ms400-1400_coco.py)  | [google](https://drive.google.com/file/d/1O5DOHwdDLjR6CVpEP0lIcKHHAT_vUQrE/view?usp=sharing) | 
 
 ### Cascade Mask R-CNN (1600x1400)
 | Backbone | Pretrain | Lr Schd | box mAP | mask mAP | #params | FLOPs | config | model |
