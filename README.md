@@ -2,7 +2,7 @@
 #
 This repo contains the supported code and configuration files to reproduce object detection results of [CBNetV2](http://arxiv.org/abs/2107.00420). It is based on [mmdetection](https://github.com/open-mmlab/mmdetection) and [Swin Transformer for Object Detection](https://github.com/SwinTransformer/Swin-Transformer-Object-Detection).
 
-Contact us with tingtingliang@pku.edu.cn, wyt@pku.edu.cn.
+Contact us with tingtingliang@pku.edu.cn, chuxiaojie@stu.pku.edu.cn, wyt@pku.edu.cn.
 
 ## Results and Models
 
