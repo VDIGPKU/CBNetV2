@@ -1,4 +1,8 @@
 # CBNetV2: A Novel Composite Backbone Network Architecture for Object Detection
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cbnetv2-a-composite-backbone-network/object-detection-on-coco)](https://paperswithcode.com/sota/object-detection-on-coco?p=cbnetv2-a-composite-backbone-network)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cbnetv2-a-composite-backbone-network/instance-segmentation-on-coco)](https://paperswithcode.com/sota/instance-segmentation-on-coco?p=cbnetv2-a-composite-backbone-network)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cbnetv2-a-composite-backbone-network/object-detection-on-coco-minival)](https://paperswithcode.com/sota/object-detection-on-coco-minival?p=cbnetv2-a-composite-backbone-network)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cbnetv2-a-composite-backbone-network/instance-segmentation-on-coco-minival)](https://paperswithcode.com/sota/instance-segmentation-on-coco-minival?p=cbnetv2-a-composite-backbone-network)
 
 By [Tingting Liang](https://github.com/tingtingliangvs)\*, [Xiaojie Chu](https://github.com/chuxiaojie)\*, [Yudong Liu](https://github.com/PKUbahuangliuhe)\*, Yongtao Wang, Zhi Tang, Wei Chu, Jingdong Chen, Haibin Ling.
 
@@ -6,46 +10,46 @@ This repo is the official implementation of [CBNetV2](http://arxiv.org/abs/2107.
 
 Contact us with tingtingliang@pku.edu.cn, chuxiaojie@stu.pku.edu.cn, wyt@pku.edu.cn.
 ## Introduction
-*CBNetV2* achieves strong single-model performance on COCO object detection (`59.3 box AP` and `51.8 mask AP` on test-dev) without extra training data, surpassing previous models.
+*CBNetV2* achieves strong single-model performance on COCO object detection (`59.3 box AP` and `51.8 mask AP` on test-dev) without extra training data.
 
-![teaser](figures/cbnetV2.jpg)
+![teaser](figures/cbnetv2.png)
 
 ## Results and Models
 
 ### Faster R-CNN 
 | Backbone | Pretrain | Lr Schd | box mAP |  #params | FLOPs | config | log | model |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | 
-| DB-ResNet50 | ImageNet-1K | 1x |  40.8 | 69M | 284G | [config](configs/cbnet/faster_rcnn_cbv2d1_r50_fpn_1x_coco.py) | [google](https://drive.google.com/file/d/1l_rpp26TX1ix8wUrjRrxkQX20GMG_t1u/view?usp=sharing)| [google](https://drive.google.com/file/d/1vQrMj4aehNMlSjqV_z5r3rbVNRzDpcco/view?usp=sharing)| 
+| DB-ResNet50 | ImageNet-1K | 1x |  40.8 | 69M | 284G | [config](configs/cbnet/faster_rcnn_cbv2d1_r50_fpn_1x_coco.py) | [github](https://github.com/CBNetwork/storage/releases/download/untagged-78628130af0ab06baf9e/faster_rcnn_cbv2d1_r50_fpn_1x_coco.log.json)| [github](https://github.com/CBNetwork/storage/releases/download/untagged-78628130af0ab06baf9e/faster_rcnn_cbv2d1_r50_fpn_1x_coco.pth.zip)| 
 
 
 ### Mask R-CNN
 
 | Backbone | Pretrain | Lr Schd | box mAP | mask mAP | #params | FLOPs | config | log | model |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | 
-| DB-Swin-T | ImageNet-1K | 3x | 50.2 | 44.5 | 76M | 357G | [config](configs/cbnet/mask_rcnn_cbv2_swin_small_patch4_window7_mstrain_480-800_adamw_3x_coco.py) | [google](https://drive.google.com/file/d/10SVLpbwFxv7yEnjq9ufyk9-x3V29A8jX/view?usp=sharing)  | [google](https://drive.google.com/file/d/1iHZr0_Fpyx__kq0zQPAHQ0eNvhDRQgm4/view?usp=sharing) |
+| DB-Swin-T | ImageNet-1K | 3x | 50.2 | 44.5 | 76M | 357G | [config](configs/cbnet/mask_rcnn_cbv2_swin_small_patch4_window7_mstrain_480-800_adamw_3x_coco.py) | [github](https://github.com/CBNetwork/storage/releases/download/untagged-78628130af0ab06baf9e/mask_rcnn_cbv2_swin_tiny_patch4_window7_mstrain_480-800_adamw_3x_coco.log.json)  | [github](https://github.com/CBNetwork/storage/releases/download/untagged-78628130af0ab06baf9e/mask_rcnn_cbv2_swin_tiny_patch4_window7_mstrain_480-800_adamw_3x_coco.pth.zip) |
 
 
 ### Cascade Mask R-CNN
 | Backbone | Pretrain | Lr Schd | box mAP | mask mAP | #params | FLOPs | config | log | model |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| DB-Swin-T | ImageNet-1K | 3x | 53.6 | 46.2 | 114M | 836G | [config](configs/cbnet/cascade_mask_rcnn_cbv2_swin_tiny_patch4_window7_mstrain_480-800_adamw_3x_coco.py) | [google](https://drive.google.com/file/d/19y2zwi1QQzQ0jgNdULxHQ7XQNlQfMc2m/view?usp=sharing) | [google](https://drive.google.com/file/d/1wlOPQIn4eY83Y4vX38H9OR-BL7RtGcVG/view?usp=sharing) | 
+| DB-Swin-T | ImageNet-1K | 3x | 53.6 | 46.2 | 114M | 836G | [config](configs/cbnet/cascade_mask_rcnn_cbv2_swin_tiny_patch4_window7_mstrain_480-800_adamw_3x_coco.py) | [github](https://github.com/CBNetwork/storage/releases/download/untagged-78628130af0ab06baf9e/cascade_mask_rcnn_cbv2_swin_tiny_patch4_window7_mstrain_480-800_adamw_3x_coco.log.json) | [github](https://github.com/CBNetwork/storage/releases/download/untagged-78628130af0ab06baf9e/cascade_mask_rcnn_cbv2_swin_tiny_patch4_window7_mstrain_480-800_adamw_3x_coco.pth.zip) | 
 
 ### Cascade R-CNN (1600x1400)
 | Backbone | Pretrain | Lr Schd | box mAP |  #params | FLOPs | config | model |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | 
-| DB-Res2Net101-DCN | ImageNet-1K | 20e |  53.7 | 149M | 589G | [config](configs/cbnet/cascade_rcnn_cbv2d1_r2_101_mdconv_fpn_20e_fp16_ms400-1400_coco.py) | [google](https://drive.google.com/file/d/1111aLr6w2pJdqrljOfM600L-cFVSiFf5/view?usp=sharing)| 
-| DB-Res2Net101-DCN | ImageNet-1K | 20e + 1x (swa) | 54.8 | 149M | 589G | [config](configs/cbnet/cascade_rcnn_cbv2d1_r2_101_mdconv_fpn_20e_fp16_ms400-1400_coco.py)  | [google](https://drive.google.com/file/d/1O5DOHwdDLjR6CVpEP0lIcKHHAT_vUQrE/view?usp=sharing) | 
+| DB-Res2Net101-DCN | ImageNet-1K | 20e |  53.7 | 149M | 589G | [config](configs/cbnet/cascade_rcnn_cbv2d1_r2_101_mdconv_fpn_20e_fp16_ms400-1400_coco.py) | [github](https://github.com/CBNetwork/storage/releases/download/untagged-78628130af0ab06baf9e/cascade_rcnn_cbv2d1_r2_101_mdconv_fpn_20e_fp16_ms400-1400_coco.pth.zip)| 
+| DB-Res2Net101-DCN | ImageNet-1K | 20e + 1x (swa) | 54.8 | 149M | 589G | - | [github](https://github.com/CBNetwork/storage/releases/download/untagged-78628130af0ab06baf9e/cascade_rcnn_cbv2d1_r2_101_mdconv_fpn_20e_fp16_ms400-1400_coco_swa.pth.zip) | 
 
 ### Cascade Mask R-CNN (1600x1400)
 | Backbone | Pretrain | Lr Schd | box mAP | mask mAP | #params | FLOPs | config | model |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| DB-Swin-S | ImageNet-1K | 3x | 56.3 | 48.6 | 156M | 1016G | [config](configs/cbnet/cascade_mask_rcnn_cbv2_swin_small_patch4_window7_mstrain_400-1400_adamw_3x_coco.py) | [google](https://drive.google.com/file/d/11hDVHFnGx3zytsd-jNeyD5-EPxcU4Nar/view?usp=sharing)| 
+| DB-Swin-S | ImageNet-1K | 3x | 56.3 | 48.6 | 156M | 1016G | [config](configs/cbnet/cascade_mask_rcnn_cbv2_swin_small_patch4_window7_mstrain_400-1400_adamw_3x_coco.py) | [github](https://github.com/CBNetwork/storage/releases/download/untagged-78628130af0ab06baf9e/cascade_mask_rcnn_cbv2_swin_small_patch4_window7_mstrain_400-1400_adamw_3x_coco.pth.zip)| 
 
 ### HTC (1600x1400)
 | Backbone | Pretrain | Lr Schd | box mAP | mask mAP | #params | FLOPs | config | model |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| DB-Swin-B | ImageNet-22K | 20e | 57.9 | 50.2 | 231M | 1004G | [config](configs/cbnet/htc_cbv2_swin_base_patch4_window7_mstrain_400-1400_adamw_20e_coco.py) | [google](https://drive.google.com/file/d/1GtnBkAbLmoN8sIU_FxMqO_T0K8gfKLmv/view?usp=sharing) |
-| DB-Swin-B | ImageNet-22K | 20e + 1x (swa) | 58.2 | 50.4 | 231M | 1004G | [config](configs/cbnet/htc_cbv2_swin_base_patch4_window7_mstrain_400-1400_adamw_20e_coco.py) | [google](https://drive.google.com/file/d/14FWRFBJCjyrrX7czj3n7zJNfrsazw54Z/view?usp=sharing)| 
+| DB-Swin-B | ImageNet-22K | 20e | 57.9 | 50.2 | 231M | 1004G | [config](configs/cbnet/htc_cbv2_swin_base_patch4_window7_mstrain_400-1400_adamw_20e_coco.py) | [github](https://github.com/CBNetwork/storage/releases/download/untagged-78628130af0ab06baf9e/htc_cbv2_swin_base22k_patch4_window7_mstrain_400-1400_adamw_20e_coco.pth.zip) |
+| DB-Swin-B | ImageNet-22K | 20e + 1x (swa) | 58.2 | 50.4 | 231M | 1004G | - | [github](https://github.com/CBNetwork/storage/releases/download/untagged-78628130af0ab06baf9e/htc_cbv2_swin_base22k_patch4_window7_mstrain_400-1400_adamw_20e_coco_swa.pth.zip)| 
 
 
 **Notes**: 
