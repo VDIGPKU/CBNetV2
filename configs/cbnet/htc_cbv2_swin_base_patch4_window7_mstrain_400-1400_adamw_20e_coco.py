@@ -87,10 +87,26 @@ test_pipeline = [
 
 samples_per_gpu=1
 data = dict(samples_per_gpu=samples_per_gpu,
-            train=dict(pipeline=train_pipeline),
+            train=dict(
+                seg_prefix=data_root + 'stuffthingmaps/train2017/',
+                pipeline=train_pipeline),
             val=dict(pipeline=test_pipeline),
             test=dict(pipeline=test_pipeline))
-optimizer = dict(lr=0.0001*(samples_per_gpu/2))
+optimizer = dict(_delete_=True, type='AdamW', lr=0.0001*(samples_per_gpu/2), betas=(0.9, 0.999), weight_decay=0.05,
+                 paramwise_cfg=dict(custom_keys={'absolute_pos_embed': dict(decay_mult=0.),
+                                                 'relative_position_bias_table': dict(decay_mult=0.),
+                                                 'norm': dict(decay_mult=0.)}))
 
 lr_config = dict(step=[16, 19])
 runner = dict(type='EpochBasedRunnerAmp', max_epochs=20)
+
+# do not use mmdet version fp16
+fp16 = None
+optimizer_config = dict(
+    type="DistOptimizerHook",
+    update_interval=1,
+    grad_clip=None,
+    coalesce=True,
+    bucket_size_mb=-1,
+    use_fp16=True,
+)
