@@ -1,12 +1,14 @@
 # CBNetV2: A Novel Composite Backbone Network Architecture for Object Detection
 
 By [Tingting Liang](https://github.com/tingtingliangvs)\*, [Xiaojie Chu](https://github.com/chuxiaojie)\*, [Yudong Liu](https://github.com/PKUbahuangliuhe)\*, Yongtao Wang, Zhi Tang, Wei Chu, Jingdong Chen, Haibin Ling.
+
 This repo is the official implementation of [CBNetV2](http://arxiv.org/abs/2107.00420). It is based on [mmdetection](https://github.com/open-mmlab/mmdetection) and [Swin Transformer for Object Detection](https://github.com/SwinTransformer/Swin-Transformer-Object-Detection).
 
 Contact us with tingtingliang@pku.edu.cn, chuxiaojie@stu.pku.edu.cn, wyt@pku.edu.cn.
 ## Introduction
 *CBNetV2*
 CBNetV2 achieves strong single-model performance on COCO object detection (`59.3 box AP` and `51.8 mask AP` on test-dev), surpassing previous models.
+
 ![teaser](figures/cbnetV2.pdf)
 
 ## Results and Models
