@@ -49,7 +49,7 @@ Contact us with tingtingliang@pku.edu.cn, chuxiaojie@stu.pku.edu.cn, wyt@pku.edu
 | Backbone | Pretrain | Lr Schd | box mAP | mask mAP | #params | FLOPs | config | model |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | DB-Swin-B | ImageNet-22K | 20e | 57.9 | 50.2 | 231M | 1004G | [config](configs/cbnet/htc_cbv2_swin_base_patch4_window7_mstrain_400-1400_adamw_20e_coco.py) | [github](https://github.com/CBNetwork/storage/releases/download/v1.0.0/htc_cbv2_swin_base22k_patch4_window7_mstrain_400-1400_adamw_20e_coco.pth.zip) |
-| DB-Swin-B | ImageNet-22K | 20e + 1x (swa) | 58.2 | 50.4 | 231M | 1004G | - | [github](https://github.com/CBNetwork/storage/releases/download/v1.0.0/htc_cbv2_swin_base22k_patch4_window7_mstrain_400-1400_adamw_20e_coco_swa.pth.zip)| 
+| DB-Swin-B | ImageNet-22K | 20e + 1x (swa) | 58.2 | 50.4 | 231M | 1004G | [config (test only)](configs/cbnet/htc_cbv2_swin_base_patch4_window7_mstrain_400-1400_adamw_20e_coco.py) | [github](https://github.com/CBNetwork/storage/releases/download/v1.0.0/htc_cbv2_swin_base22k_patch4_window7_mstrain_400-1400_adamw_20e_coco_swa.pth.zip)| 
 
 
 **Notes**: 
