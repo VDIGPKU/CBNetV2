@@ -106,10 +106,10 @@ optimizer_config = dict(
 ## Citation
 If you use our code/model, please consider to cite our paper [CBNetV2: A Novel Composite Backbone Network Architecture for Object Detection](http://arxiv.org/abs/2107.00420).
 ```
-@article{liu2021Swin,
-  title={Swin Transformer: Hierarchical Vision Transformer using Shifted Windows},
-  author={Liu, Ze and Lin, Yutong and Cao, Yue and Hu, Han and Wei, Yixuan and Zhang, Zheng and Lin, Stephen and Guo, Baining},
-  journal={arXiv preprint arXiv:2103.14030},
+@article{liang2021cbnetv2,
+  title={CBNetV2: A Composite Backbone Network Architecture for Object Detection}, 
+  author={Tingting Liang and Xiaojie Chu and Yudong Liu and Yongtao Wang and Zhi Tang and Wei Chu and Jingdong Chen and Haibing Ling},
+  journal={arXiv preprint arXiv:2107.00420},
   year={2021}
 }
 ```
