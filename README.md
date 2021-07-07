@@ -9,7 +9,7 @@ Contact us with tingtingliang@pku.edu.cn, chuxiaojie@stu.pku.edu.cn, wyt@pku.edu
 *CBNetV2*
 CBNetV2 achieves strong single-model performance on COCO object detection (`59.3 box AP` and `51.8 mask AP` on test-dev), surpassing previous models.
 
-![teaser](figures/cbnetV2.pdf)
+![teaser](figures/cbnetV2.jpg)
 
 ## Results and Models
 
