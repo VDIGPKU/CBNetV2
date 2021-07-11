@@ -54,7 +54,12 @@ Contact us with tingtingliang@pku.edu.cn, chuxiaojie@stu.pku.edu.cn, wyt@pku.edu
 ### improved HTC (1600x1400)
 | Backbone | Pretrain | Lr Schd | box mAP (minival/test-dev) | mask mAP (minival/test-dev) | #params | FLOPs | config | model |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| DB-Swin-B | ImageNet-22K | 20e | 58.4/58.7 | 50.7/51.1 | 235M | 2276G | - | - |
+| DB-Swin-B* | ImageNet-22K | 20e | 58.9/59.3 | 51.3/51.8 | 235M | - | - | - |
 | DB-Swin-L | ImageNet-22K | 12e | 59.1/59.4 | 51.0/51.6 | 453M | 4030G | - | - |
+| DB-Swin-L* | ImageNet-22K | 12e | 59.6/60.1 | 51.8/52.3 | 453M | - | - | - |
+
+* denotes with TTA (test time augmentation).
 
 **Notes**: 
 
