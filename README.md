@@ -10,7 +10,7 @@ This repo is the official implementation of [CBNetV2](http://arxiv.org/abs/2107.
 
 Contact us with tingtingliang@pku.edu.cn, chuxiaojie@stu.pku.edu.cn, wyt@pku.edu.cn.
 ## Introduction
-*CBNetV2* achieves strong single-model performance on COCO object detection (`59.3 box AP` and `51.8 mask AP` on test-dev) without extra training data.
+*CBNetV2* achieves strong single-model performance on COCO object detection (`60.1 box AP` and `52.3 mask AP` on test-dev) without extra training data.
 
 ![teaser](figures/cbnetv2.png)
 
