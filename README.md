@@ -48,7 +48,6 @@ TTA denotes test time augmentation.
 **Notes**: 
 
 - **Pre-trained models of Swin Transformer can be downloaded from [Swin Transformer for ImageNet Classification](https://github.com/microsoft/Swin-Transformer)**.
-- For SWA training, please refer to [SWA Object Detection](https://github.com/hyz-xmaster/swa_object_detection)
 
 ## Usage
 
