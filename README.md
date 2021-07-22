@@ -14,52 +14,36 @@ Contact us with tingtingliang@pku.edu.cn, chuxiaojie@stu.pku.edu.cn, wyt@pku.edu
 
 ![teaser](figures/cbnetv2.png)
 
-## Results and Models
+
+## Partial Results and Models
+**More results and models can be found in [model zoo](model_zoo.md)**
 
 ### Faster R-CNN 
-| Backbone | Pretrain | Lr Schd | box mAP (minival) |  #params | FLOPs | config | log | model |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | 
-| DB-ResNet50 | ImageNet-1K | 1x |  40.8 | 69M | 284G | [config](configs/cbnet/faster_rcnn_cbv2d1_r50_fpn_1x_coco.py) | [github](https://github.com/CBNetwork/storage/releases/download/v1.0.0/faster_rcnn_cbv2d1_r50_fpn_1x_coco.log.json)| [github](https://github.com/CBNetwork/storage/releases/download/v1.0.0/faster_rcnn_cbv2d1_r50_fpn_1x_coco.pth.zip)| 
+| Backbone | Lr Schd | box mAP (minival) |  #params | FLOPs | config | log | model |
+| :---: |  :---: | :---: | :---: | :---: | :---: | :---: | :---: | 
+| DB-ResNet50 | 1x |  40.8 | 69M | 284G | [config](configs/cbnet/faster_rcnn_cbv2d1_r50_fpn_1x_coco.py) | [github](https://github.com/CBNetwork/storage/releases/download/v1.0.0/faster_rcnn_cbv2d1_r50_fpn_1x_coco.log.json)| [github](https://github.com/CBNetwork/storage/releases/download/v1.0.0/faster_rcnn_cbv2d1_r50_fpn_1x_coco.pth.zip)| 
 
 
 ### Mask R-CNN
 
-| Backbone | Pretrain | Lr Schd | box mAP (minival) | mask mAP (minival) | #params | FLOPs | config | log | model |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | 
-| DB-Swin-T | ImageNet-1K | 3x | 50.2 | 44.5 | 76M | 357G | [config](configs/cbnet/mask_rcnn_cbv2_swin_small_patch4_window7_mstrain_480-800_adamw_3x_coco.py) | [github](https://github.com/CBNetwork/storage/releases/download/v1.0.0/mask_rcnn_cbv2_swin_tiny_patch4_window7_mstrain_480-800_adamw_3x_coco.log.json)  | [github](https://github.com/CBNetwork/storage/releases/download/v1.0.0/mask_rcnn_cbv2_swin_tiny_patch4_window7_mstrain_480-800_adamw_3x_coco.pth.zip) |
-
-
-### Cascade Mask R-CNN
-| Backbone | Pretrain | Lr Schd | box mAP (minival)| mask mAP (minival)| #params | FLOPs | config | log | model |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| DB-Swin-T | ImageNet-1K | 3x | 53.6 | 46.2 | 114M | 836G | [config](configs/cbnet/cascade_mask_rcnn_cbv2_swin_tiny_patch4_window7_mstrain_480-800_adamw_3x_coco.py) | [github](https://github.com/CBNetwork/storage/releases/download/v1.0.0/cascade_mask_rcnn_cbv2_swin_tiny_patch4_window7_mstrain_480-800_adamw_3x_coco.log.json) | [github](https://github.com/CBNetwork/storage/releases/download/v1.0.0/cascade_mask_rcnn_cbv2_swin_tiny_patch4_window7_mstrain_480-800_adamw_3x_coco.pth.zip) | 
-
-### Cascade R-CNN (1600x1400)
-| Backbone | Pretrain | Lr Schd | box mAP (minival/test-dev)|  #params | FLOPs | config | model |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | 
-| DB-Res2Net101-DCN | ImageNet-1K | 20e |  53.7/- | 149M | 589G | [config](configs/cbnet/cascade_rcnn_cbv2d1_r2_101_mdconv_fpn_20e_fp16_ms400-1400_coco.py) | [github](https://github.com/CBNetwork/storage/releases/download/v1.0.0/cascade_rcnn_cbv2d1_r2_101_mdconv_fpn_20e_fp16_ms400-1400_coco.pth.zip)| 
-| DB-Res2Net101-DCN | ImageNet-1K | 20e + 1x (swa) | 54.8/55.3 | 149M | 589G | [config (test only)](configs/cbnet/cascade_rcnn_cbv2d1_r2_101_mdconv_fpn_20e_fp16_ms400-1400_coco.py) | [github](https://github.com/CBNetwork/storage/releases/download/v1.0.0/cascade_rcnn_cbv2d1_r2_101_mdconv_fpn_20e_fp16_ms400-1400_coco_swa.pth.zip) | 
+| Backbone | Lr Schd | box mAP (minival) | mask mAP (minival) | #params | FLOPs | config | log | model |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | 
+| DB-Swin-T | 3x | 50.2 | 44.5 | 76M | 357G | [config](configs/cbnet/mask_rcnn_cbv2_swin_tiny_patch4_window7_mstrain_480-800_adamw_3x_coco.py) | [github](https://github.com/CBNetwork/storage/releases/download/v1.0.0/mask_rcnn_cbv2_swin_tiny_patch4_window7_mstrain_480-800_adamw_3x_coco.log.json)  | [github](https://github.com/CBNetwork/storage/releases/download/v1.0.0/mask_rcnn_cbv2_swin_tiny_patch4_window7_mstrain_480-800_adamw_3x_coco.pth.zip) |
 
 ### Cascade Mask R-CNN (1600x1400)
-| Backbone | Pretrain | Lr Schd | box mAP (minival/test-dev)| mask mAP (minival/test-dev)| #params | FLOPs | config | model |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| DB-Swin-S | ImageNet-1K | 3x | 56.3/56.9 | 48.6/49.1 | 156M | 1016G | [config](configs/cbnet/cascade_mask_rcnn_cbv2_swin_small_patch4_window7_mstrain_400-1400_adamw_3x_coco.py) | [github](https://github.com/CBNetwork/storage/releases/download/v1.0.0/cascade_mask_rcnn_cbv2_swin_small_patch4_window7_mstrain_400-1400_adamw_3x_coco.pth.zip)| 
+| Backbone | Lr Schd | box mAP (minival/test-dev)| mask mAP (minival/test-dev)| #params | FLOPs | config | model |
+| :---: | :---: |  :---: | :---: | :---: | :---: | :---: | :---: |
+| DB-Swin-S |  3x | 56.3/56.9 | 48.6/49.1 | 156M | 1016G | [config](configs/cbnet/cascade_mask_rcnn_cbv2_swin_small_patch4_window7_mstrain_400-1400_adamw_3x_coco.py) | [github](https://github.com/CBNetwork/storage/releases/download/v1.0.0/cascade_mask_rcnn_cbv2_swin_small_patch4_window7_mstrain_400-1400_adamw_3x_coco.pth.zip)| 
 
-### HTC (1600x1400)
-| Backbone | Pretrain | Lr Schd | box mAP (minival/test-dev) | mask mAP (minival/test-dev) | #params | FLOPs | config | model |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| DB-Swin-B | ImageNet-22K | 20e | 57.9/- | 50.2/- | 231M | 1004G | [config](configs/cbnet/htc_cbv2_swin_base_patch4_window7_mstrain_400-1400_adamw_20e_coco.py) | [github](https://github.com/CBNetwork/storage/releases/download/v1.0.0/htc_cbv2_swin_base22k_patch4_window7_mstrain_400-1400_adamw_20e_coco.pth.zip) |
-| DB-Swin-B | ImageNet-22K | 20e + 1x (swa) | 58.2/58.6 | 50.4/51.1 | 231M | 1004G | [config (test only)](configs/cbnet/htc_cbv2_swin_base_patch4_window7_mstrain_400-1400_adamw_20e_coco.py) | [github](https://github.com/CBNetwork/storage/releases/download/v1.0.0/htc_cbv2_swin_base22k_patch4_window7_mstrain_400-1400_adamw_20e_coco_swa.pth.zip)| 
+### Improved HTC (1600x1400)
+*We use ImageNet-22k pretrained checkpoints of Swin-B and Swin-L. Compared to regular HTC, our HTC uses 4conv1fc in bbox head.*
+| Backbone | Lr Schd | box mAP (minival/test-dev) | mask mAP (minival/test-dev) | #params | FLOPs | config | model |
+| :---: |:---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| DB-Swin-B | 20e | 58.4/58.7 | 50.7/51.1 | 235M | 1348G | [config](configs/cbnet/htc_cbv2_swin_base_patch4_window7_mstrain_400-1400_giou_4conv1f_adamw_20e_coco.py) | [github](https://github.com/CBNetwork/storage/releases/download/v1.0.0/htc_cbv2_swin_base22k_patch4_window7_mstrain_400-1400_giou_4conv1f_adamw_20e_coco.pth.zip) |
+| DB-Swin-L | 1x | 59.1/59.4 | 51.0/51.6 | 453M | 2162G | [config](configs/cbnet/htc_cbv2_swin_large_patch4_window7_mstrain_400-1400_giou_4conv1f_adamw_1x_coco.py) | [github](https://github.com/CBNetwork/storage/releases/download/v1.0.0/htc_cbv2_swin_large22k_patch4_window7_mstrain_400-1400_giou_4conv1f_adamw_1x_coco.pth.zip) |
+| DB-Swin-L (TTA) |  1x | 59.6/60.1 | 51.8/52.3 | 453M | - | [config](configs/cbnet/htc_cbv2_swin_large_patch4_window7_mstrain_400-1400_giou_4conv1f_adamw_1x_coco.py) | [github](https://github.com/CBNetwork/storage/releases/download/v1.0.0/htc_cbv2_swin_large22k_patch4_window7_mstrain_400-1400_giou_4conv1f_adamw_1x_coco.pth.zip) |
 
-### improved HTC (1600x1400)
-| Backbone | Pretrain | Lr Schd | box mAP (minival/test-dev) | mask mAP (minival/test-dev) | #params | FLOPs | config | model |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| DB-Swin-B | ImageNet-22K | 20e | 58.4/58.7 | 50.7/51.1 | 235M | 1348G | - | - |
-| DB-Swin-B (TTA) | ImageNet-22K | 20e | 58.9/59.3 | 51.3/51.8 | 235M | - | - | - |
-| DB-Swin-L | ImageNet-22K | 1x | 59.1/59.4 | 51.0/51.6 | 453M | 2162G | - | - |
-| DB-Swin-L (TTA) | ImageNet-22K | 1x | 59.6/60.1 | 51.8/52.3 | 453M | - | - | - |
-
- TTA denotes test time augmentation.
+TTA denotes test time augmentation.
 
 **Notes**: 
 
@@ -88,15 +72,15 @@ To train a detector with pre-trained models, run:
 # multi-gpu training
 tools/dist_train.sh <CONFIG_FILE> <GPU_NUM> 
 ```
-For example, to train a Cascade R-CNN model with a `Duel-Res2Net101-DCN` backbone and 8 gpus, run:
+For example, to train a Faster R-CNN model with a `Duel-ResNet50` backbone and 8 gpus, run:
 ```
-# path of pre-training model (res2net) is already in config
-tools/dist_train.sh configs/cbnet/cascade_rcnn_cbv2d1_r2_101_mdconv_fpn_20e_fp16_ms400-1400_coco.py 8 
+# path of pre-training model (resnet50) is already in config
+tools/dist_train.sh configs/cbnet/faster_rcnn_cbv2d1_r50_fpn_1x_coco.py 8 
 ```
 
-Another  example, to train a Cascade Mask R-CNN model with a `Duel-Swin-T` backbone and 8 gpus, run:
+Another  example, to train a Mask R-CNN model with a `Duel-Swin-T` backbone and 8 gpus, run:
 ```
-tools/dist_train.sh configs/cbnet/mask_rcnn_cbv2_swin_small_patch4_window7_mstrain_480-800_adamw_3x_coco.py 8 --cfg-options model.pretrained=<PRETRAIN_MODEL> 
+tools/dist_train.sh configs/cbnet/mask_rcnn_cbv2_swin_tiny_patch4_window7_mstrain_480-800_adamw_3x_coco.py 8 --cfg-options model.pretrained=<PRETRAIN_MODEL> 
 ```
 
 
@@ -108,19 +92,13 @@ git clone https://github.com/NVIDIA/apex
 cd apex
 pip install -v --disable-pip-version-check --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
 ```
-<!-- If you would like to disable apex, modify the type of runner as `EpochBasedRunner` and comment out the following code block in the [configuration files](configs/swin):
-```
-# do not use mmdet version fp16
-fp16 = None
-optimizer_config = dict(
-    type="DistOptimizerHook",
-    update_interval=1,
-    grad_clip=None,
-    coalesce=True,
-    bucket_size_mb=-1,
-    use_fp16=True,
-)
-``` -->
+
+### Documents and Tutorials
+*We list some documents and tutorials from [MMDetection](https://github.com/open-mmlab/mmdetection), which may be helpful to you.*
+* [Learn about Configs](https://github.com/open-mmlab/mmdetection/blob/master/docs/tutorials/config.md)
+* [Train with customized datasets](https://github.com/open-mmlab/mmdetection/blob/master/docs/2_new_data_model.md)
+* [Finetuning Models](https://github.com/open-mmlab/mmdetection/blob/master/docs/tutorials/finetune.md)
+
 
 ## Citation
 If you use our code/model, please consider to cite our paper [CBNetV2: A Novel Composite Backbone Network Architecture for Object Detection](http://arxiv.org/abs/2107.00420).
@@ -139,5 +117,3 @@ The project is only free for academic research purposes, but needs authorization
 
 ## Other Links
 > **Original CBNet**: See [CBNet: A Novel Composite Backbone Network Architecture for Object Detection](https://github.com/VDIGPKU/CBNet).
-<!-- 
-> **SWA**: See [SWA Object Detection](https://github.com/hyz-xmaster/swa_object_detection) -->
