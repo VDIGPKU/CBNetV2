@@ -1,4 +1,4 @@
-# CBNetV2: A Novel Composite Backbone Network Architecture for Object Detection
+# CBNet: A Composite Backbone Network Architecture for Object Detection
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cbnetv2-a-composite-backbone-network/object-detection-on-coco)](https://paperswithcode.com/sota/object-detection-on-coco?p=cbnetv2-a-composite-backbone-network)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cbnetv2-a-composite-backbone-network/instance-segmentation-on-coco)](https://paperswithcode.com/sota/instance-segmentation-on-coco?p=cbnetv2-a-composite-backbone-network)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cbnetv2-a-composite-backbone-network/object-detection-on-coco-minival)](https://paperswithcode.com/sota/object-detection-on-coco-minival?p=cbnetv2-a-composite-backbone-network)
