@@ -100,13 +100,13 @@ pip install -v --disable-pip-version-check --no-cache-dir --global-option="--cpp
 
 
 ## Citation
-If you use our code/model, please consider to cite our paper [CBNetV2: A Novel Composite Backbone Network Architecture for Object Detection](http://arxiv.org/abs/2107.00420).
+If you use our code/model, please consider to cite our paper [CBNet: A Composite Backbone Network Architecture for Object Detection](http://arxiv.org/abs/2107.00420).
 ```
 @article{liang2021cbnetv2,
-  title={CBNetV2: A Composite Backbone Network Architecture for Object Detection}, 
+  title={CBNet: A Composite Backbone Network Architecture for Object Detection}, 
   author={Tingting Liang and Xiaojie Chu and Yudong Liu and Yongtao Wang and Zhi Tang and Wei Chu and Jingdong Chen and Haibing Ling},
-  journal={arXiv preprint arXiv:2107.00420},
-  year={2021}
+  journal={IEEE Transactions on Image Processing, TIP},
+  year={2022}
 }
 ```
 
