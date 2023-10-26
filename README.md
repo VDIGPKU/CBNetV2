@@ -94,9 +94,9 @@ pip install -v --disable-pip-version-check --no-cache-dir --global-option="--cpp
 
 ### Documents and Tutorials
 *We list some documents and tutorials from [MMDetection](https://github.com/open-mmlab/mmdetection), which may be helpful to you.*
-* [Learn about Configs](https://github.com/open-mmlab/mmdetection/blob/master/docs/tutorials/config.md)
-* [Train with customized datasets](https://github.com/open-mmlab/mmdetection/blob/master/docs/2_new_data_model.md)
-* [Finetuning Models](https://github.com/open-mmlab/mmdetection/blob/master/docs/tutorials/finetune.md)
+* [Learn about Configs](https://github.com/open-mmlab/mmdetection/blob/master/docs/en/tutorials/config.md)
+* [Train with customized datasets](https://github.com/open-mmlab/mmdetection/blob/master/docs/en/tutorials/customize_dataset.md)
+* [Finetuning Models](https://github.com/open-mmlab/mmdetection/blob/master/docs/en/tutorials/finetune.md)
 
 
 ## Citation
