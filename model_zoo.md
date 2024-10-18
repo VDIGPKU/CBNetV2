@@ -58,7 +58,13 @@
 | DB-Swin-L (TTA) |  1x | 59.6/60.1 | 51.8/52.3 | 453M | - | [config](configs/cbnet/htc_cbv2_swin_large_patch4_window7_mstrain_400-1400_giou_4conv1f_adamw_1x_coco.py) | [github](https://github.com/CBNetwork/storage/releases/download/v1.0.0/htc_cbv2_swin_large22k_patch4_window7_mstrain_400-1400_giou_4conv1f_adamw_1x_coco.pth.zip) |
 
 TTA denotes test time augmentation.
- 
+
+### EVA02 (1536x1536)
+|  Backbone  | Lr Schd | mask mAP (test-dev) | #params |                            config                            |                       model                       |
+| :--------: | :-----: | :-----------------: | :-----: | :----------------------------------------------------------: | :-----------------------------------------------: |
+| DB-EVA02-L |   1x    |        56.1         |  674M   | [config](EVA/EVA-02/det/projects/ViTDet/configs/eva2_o365_to_coco/cb_eva2_o365_to_coco_cascade_mask_rcnn_vitdet_l_8attn_1536_lrd0p8.py) | [HF](https://huggingface.co/weeewe/CBNetV2-EVA02) |
+
+
 **Notes**: 
 
 - **Pre-trained models of Swin Transformer can be downloaded from [Swin Transformer for ImageNet Classification](https://github.com/microsoft/Swin-Transformer)**.
