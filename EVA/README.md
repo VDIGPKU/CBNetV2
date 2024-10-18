@@ -29,10 +29,10 @@ python tools/lazyconfig_train_net.py \
     --config-file projects/ViTDet/configs/eva2_o365_to_coco/cb_eva2_o365_to_coco_cascade_mask_rcnn_vitdet_l_8attn_1536_lrd0p8.py \
     train.output_dir=YOUR_OUTPUT_PATH \
     train.init_checkpoint=PATH_TO/cb_eva02_L_m38m_to_o365.pth
-
-### Inference on Test
-
-To train CBNet-EVA-L with pre-trained models, run:
+```
+### Inference on Testset
+To run CBNet-EVA-L with COCO test, run:
+```
 python tools/lazyconfig_train_net.py \
  --num-gpus N_GPU \
  --config-file projects/ViTDet/configs/eva2_o365_to_coco/cb_eva2_o365_to_coco_cascade_mask_rcnn_vitdet_l_8attn_1536_lrd0p8.py \
@@ -46,12 +46,6 @@ python tools/lazyconfig_train_net.py \
  model.roi_heads.maskness_thresh=0.5 \
  train.init_checkpoint=YOUR_OUTPUT_PATH/model_final.pth \
  dataloader.evaluator.output_dir=YOUR_OUTPUT_PATH
-```
-
-
-Another  example, to train a Mask R-CNN model with a `Duel-Swin-T` backbone and 8 gpus, run:
-```
-tools/dist_train.sh configs/cbnet/mask_rcnn_cbv2_swin_tiny_patch4_window7_mstrain_480-800_adamw_3x_coco.py 8 --cfg-options model.pretrained=<PRETRAIN_MODEL> 
 ```
 
 ## Citation
