@@ -1,6 +1,6 @@
 # CBNet: A Composite Backbone Network Architecture for Object Detection
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cbnetv2-a-composite-backbone-network/object-detection-on-coco)](https://paperswithcode.com/sota/object-detection-on-coco?p=cbnetv2-a-composite-backbone-network)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cbnetv2-a-composite-backbone-network/instance-segmentation-on-coco)](https://paperswithcode.com/sota/instance-segmentation-on-coco?p=cbnetv2-a-composite-backbone-network)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cbnetv2-a-composite-backbone-network/object-detection-on-coco)](https://paperswithcode.com/sota/object-detection-on-coco?p=cbnetv2-a-composite-backbone-network)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cbnetv2-a-composite-backbone-network/object-detection-on-coco-minival)](https://paperswithcode.com/sota/object-detection-on-coco-minival?p=cbnetv2-a-composite-backbone-network)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cbnetv2-a-composite-backbone-network/instance-segmentation-on-coco-minival)](https://paperswithcode.com/sota/instance-segmentation-on-coco-minival?p=cbnetv2-a-composite-backbone-network)
 
@@ -9,6 +9,9 @@ By [Tingting Liang](https://github.com/tingtingliangvs)\*, [Xiaojie Chu](https:/
 This repo is the official implementation of [CBNetV2](http://arxiv.org/abs/2107.00420). It is based on [mmdetection](https://github.com/open-mmlab/mmdetection) and [Swin Transformer for Object Detection](https://github.com/SwinTransformer/Swin-Transformer-Object-Detection).
 
 Contact us with tingtingliang@pku.edu.cn, chuxiaojie@stu.pku.edu.cn, wyt@pku.edu.cn.
+## Update
+ - **2024/10/21: Update code for CB-EVA-02-L.**
+
 ## Introduction
 *CBNetV2* achieves strong single-model performance on COCO object detection (`60.1 box AP` and `52.3 mask AP` on test-dev) without extra training data.
 
@@ -48,7 +51,7 @@ TTA denotes test time augmentation.
 ### EVA02 (1536x1536)
 |  Backbone  | Lr Schd | mask mAP (test-dev) | #params |                            config                            |                       model                       |
 | :--------: | :-----: | :-----------------: | :-----: | :----------------------------------------------------------: | :-----------------------------------------------: |
-| DB-EVA02-L |   1x    |        56.1         |  674M   | [config](EVA/EVA-02/det/projects/ViTDet/configs/eva2_o365_to_coco/cb_eva2_o365_to_coco_cascade_mask_rcnn_vitdet_l_8attn_1536_lrd0p8.py) | [HF](https://huggingface.co/weeewe/CBNetV2-EVA02) |
+| DB-EVA02-L |   1x    |         56.1         |  674M   | [config](EVA/EVA-02/det/projects/ViTDet/configs/eva2_o365_to_coco/cb_eva2_o365_to_coco_cascade_mask_rcnn_vitdet_l_8attn_1536_lrd0p8.py) | [HF](https://huggingface.co/weeewe/CBNetV2-EVA02) |
 
 **Notes**: 
 
