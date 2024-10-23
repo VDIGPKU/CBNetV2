@@ -10,7 +10,7 @@ This repo is the official implementation of [CBNetV2](http://arxiv.org/abs/2107.
 
 Contact us with tingtingliang@pku.edu.cn, chuxiaojie@stu.pku.edu.cn, wyt@pku.edu.cn.
 ## Update
- - **2024/10/21: Update code for CB-EVA-02-L.**
+ - **2024/10/21: Update code for [CB-EVA-02-L](EVA/EVA-02/det/projects/ViTDet/configs/eva2_o365_to_coco/cb_eva2_o365_to_coco_cascade_mask_rcnn_vitdet_l_8attn_1536_lrd0p8.py).** We achieve new SOTA instance segmentation results (55.5 -> 56.1 mask AP) on COCO!
 
 ## Introduction
 *CBNetV2* achieves strong single-model performance on COCO object detection (`60.1 box AP` and `52.3 mask AP` on test-dev) without extra training data.
